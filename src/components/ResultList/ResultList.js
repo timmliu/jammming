@@ -4,13 +4,15 @@ import Song from '../Song/Song';
 
 class ResultList extends React.Component {
   render() {
+    const { results } = this.props
+
     return (
       <div className="result-list">
         <h2>Results</h2>
         {
-          // searchResults.map(song => {
-          //   return <Song song={song} />
-          // })
+          results.map(song => {
+            return <Song key={song.id} song={song} />
+          })
         }
       </div>
     )
