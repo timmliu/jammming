@@ -5,6 +5,7 @@ import SearchBar from './components/SearchBar/SearchBar'
 import ResultList from './components/ResultList/ResultList'
 import Playlist from './components/Playlist/Playlist'
 import Spotify from './util/Spotify'
+import { urlHash } from './util/helpers'
 
 class App extends Component {
   constructor(props) {
@@ -16,10 +17,18 @@ class App extends Component {
     this.searchSpotify = this.searchSpotify.bind(this)
   }
 
+  componentDidMount() {
+    const { access_token, state: term } = urlHash()
+    this.accessToken = access_token || this.accessToken
+    if (term) this.searchSpotify(term)
+  }
+
   searchSpotify(term) {
     if (!term || !term.length) return alert("Please enter something to search")
+    if (!this.accessToken) return Spotify.authorize(term)
+
     this.setState({ loading: true })
-    Spotify.search(term)
+    Spotify.search(term, this.accessToken)
     .then(results => {
       this.setState({
         results: results || this.state.results,
