@@ -57,7 +57,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <SearchBar searchSpotify={this.searchSpotify} loading={this.state.loading} />
-        <ResultList results={this.state.results} handleAdd={this.handleAdd} />
+        <ResultList results={this.state.results} list={this.state.playlist} handleAdd={this.handleAdd} />
         <Playlist list={this.state.playlist} handleRemove={this.handleRemove} />
       </div>
     );

@@ -13,15 +13,18 @@ class ResultList extends React.Component {
   }
 
   render() {
-    const { results } = this.props
+    const { results, list } = this.props
+    const listIds = list.map(s => s.id)
 
     return (
       <div className="result-list">
         <h2>Results</h2>
         {
-          results.map(song => {
-            return <Song handleClick={this.handleClick} key={song.id} song={song} />
-          })
+          results
+            .filter(song => !listIds.includes(song.id))
+            .map(song => {
+              return <Song handleClick={this.handleClick} key={song.id} song={song} />
+            })
         }
       </div>
     )
