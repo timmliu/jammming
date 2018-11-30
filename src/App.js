@@ -4,8 +4,8 @@ import Header from './components/Header/Header'
 import SearchBar from './components/SearchBar/SearchBar'
 import ResultList from './components/ResultList/ResultList'
 import Playlist from './components/Playlist/Playlist'
-import Spotify from './util/Spotify'
-import { urlHash } from './util/helpers'
+import Spotify from './utils/Spotify'
+import { urlHash } from './utils/helpers'
 
 class App extends Component {
   constructor(props) {

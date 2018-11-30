@@ -30,6 +30,11 @@ const Spotify = {
       console.info(songs)
       return songs || []
     })
+  },
+
+  // !!!
+  savePlaylist: (playlist) => {
+    return playlist
   }
 }
 
