@@ -11,10 +11,13 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      playlist: [],
       results: [],
       loading: false
     }
     this.searchSpotify = this.searchSpotify.bind(this)
+    this.handleAdd = this.handleAdd.bind(this)
+    this.handleRemove = this.handleRemove.bind(this)
   }
 
   componentDidMount() {
@@ -37,13 +40,25 @@ class App extends Component {
     })
   }
 
+  handleAdd(song) {
+    this.setState({
+      playlist: this.state.playlist.concat(song)
+    })
+  }
+
+  handleRemove(song) {
+    this.setState({
+      playlist: this.state.playlist.filter(s => s.id !== song.id)
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
         <SearchBar searchSpotify={this.searchSpotify} loading={this.state.loading} />
-        <ResultList results={this.state.results} />
-        <Playlist />
+        <ResultList results={this.state.results} handleAdd={this.handleAdd} />
+        <Playlist list={this.state.playlist} handleRemove={this.handleRemove} />
       </div>
     );
   }
