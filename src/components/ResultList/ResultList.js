@@ -5,10 +5,10 @@ import Song from '../Song/Song';
 class ResultList extends React.Component {
   constructor(props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this)
+    this.handleAdd = this.handleAdd.bind(this)
   }
 
-  handleClick(song) {
+  handleAdd(song) {
     this.props.handleAdd(song)
   }
 
@@ -23,7 +23,7 @@ class ResultList extends React.Component {
           results
             .filter(song => !listIds.includes(song.id))
             .map(song => {
-              return <Song handleClick={this.handleClick} key={song.id} song={song} />
+              return <Song handleClick={this.handleAdd} key={song.id} song={song} />
             })
         }
       </div>

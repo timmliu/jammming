@@ -13,7 +13,8 @@ class App extends Component {
     this.state = {
       playlist: [],
       results: [],
-      loading: false
+      loading: false,
+      spotify: null
     }
     this.searchSpotify = this.searchSpotify.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
@@ -21,17 +22,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { access_token, state: term } = urlHash()
-    this.accessToken = access_token || this.accessToken
+    const { state: term } = urlHash()
+    if (!this.state.spotify) this.setState({ spotify: new Spotify() })
     if (term) this.searchSpotify(term)
   }
 
   searchSpotify(term) {
     if (!term || !term.length) return alert("Please enter something to search")
-    if (!this.accessToken) return Spotify.authorize(term)
 
     this.setState({ loading: true })
-    Spotify.search(term, this.accessToken)
+    this.state.spotify.search(term)
     .then(results => {
       this.setState({
         results: results || this.state.results,
@@ -58,7 +58,7 @@ class App extends Component {
         <Header />
         <SearchBar searchSpotify={this.searchSpotify} loading={this.state.loading} />
         <ResultList results={this.state.results} list={this.state.playlist} handleAdd={this.handleAdd} />
-        <Playlist list={this.state.playlist} handleRemove={this.handleRemove} />
+        <Playlist spotify={this.state.spotify} list={this.state.playlist} handleRemove={this.handleRemove} />
       </div>
     );
   }

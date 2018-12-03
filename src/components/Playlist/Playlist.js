@@ -5,32 +5,53 @@ import Song from '../Song/Song'
 class Playlist extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      name: "New Playlist"
+    }
     this.handleSave = this.handleSave.bind(this)
-    this.handleClick = this.handleClick.bind(this)
+    this.handleRemove = this.handleRemove.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleClick(song) {
+  handleRemove(song) {
     this.props.handleRemove(song)
   }
 
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
   handleSave(event) {
-    // call spotify api to save this.state.this
     event.preventDefault()
+    const { spotify } = this.props
+    if (!this.props.list || !this.props.list.length) return alert("Please add at least one song to save your playlist.")
+    return spotify.savePlaylist({
+      name: this.state.name,
+      list: this.props.list
+    })
+    .then(() => alert(`${this.state.name} was saved to account.`))
+    .catch((error) => {
+      console.log(error)
+      alert("Sorry, something went wrong.")
+    })
   }
 
   render() {
     return (
       <div className="playlist">
-        <h2>Playlist</h2>
-        <div>
-          <input type="text" placeholder="New Playlist" />
-        </div>
-        {
-          this.props.list.map(song => {
-            return <Song handleClick={this.handleClick} key={song.id} song={song} />
-          })
-        }
-        <button className="save-to-spotify" onClick={this.handleSave}>Save to Spotify</button>
+        <form onSubmit={this.handleSave}>
+          <h2>Playlist</h2>
+          <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
+          <br />
+          {
+            this.props.list.map(song => {
+              return <Song handleClick={this.handleRemove} key={song.id} song={song} />
+            })
+          }
+          <button className="save-to-spotify" type="submit">Save to Spotify</button>
+        </form>
       </div>
     )
   }

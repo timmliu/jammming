@@ -1,3 +1,5 @@
+const CORS_ANYWHERE = "https://cors-anywhere.herokuapp.com/"
+
 const urlHash = () => {
   const hash = window.location.hash
     .substring(1)
@@ -10,11 +12,13 @@ const urlHash = () => {
       return initial
     }, {})
 
-    window.location.hash = ''
-
-  return hash
+    return hash
 }
 
+const corsAnywhere = (url) =>
+  `${CORS_ANYWHERE}${url}`
+
 module.exports = {
+  corsAnywhere,
   urlHash
 }
