@@ -12,6 +12,10 @@ A simple Spotify playlist maker.
 1. `yarn start`
 1. visit http://localhost:3000
 
+## Feature requests
+
+- See [current improvement/enhancement suggestions](https://github.com/timmliu/jammming/labels/enhancement)
+
 ## Deploy with Surge
 
 ### Subsequent deploys
