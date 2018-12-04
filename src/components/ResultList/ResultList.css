@@ -1,9 +1,3 @@
-h2 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.55rem;
-  margin: 10px 0 20px;
-}
-
 .result-list {
   width: 50%;
   overflow-y: scroll;
@@ -16,6 +10,13 @@ h2 {
 @media screen and (max-width: 800px) {
   .result-list {
     width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .result-list {
+    width: 80%;
     margin: 0 auto;
   }
 }
