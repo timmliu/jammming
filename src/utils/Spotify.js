@@ -2,7 +2,7 @@ import { corsAnywhere, urlHash } from "./helpers"
 
 const CLIENT_ID = "8d7d16cf7cf748ae906826e4eea17ed7"
 const LIMIT = 20
-const REDIRECT_URL = "http://localhost:3000/"
+const REDIRECT_URL = "http://pbnjammming.surge.sh/" // "http://localhost:3000/"
 const SCOPES = [
   'user-read-birthdate',
   'user-read-email',
