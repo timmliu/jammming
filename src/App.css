@@ -60,9 +60,10 @@ h2 {
 .App {
   height: 100%;
   padding: 0 0 4% 0;
+  background-color: #000;
   background-image: url(./speaker-bg.jpg);
-  background-size: cover;
-  background-position: bottom left;
+  background-size: contain;
+  background-position: top left;
   background-repeat: no-repeat;
   font-family: 'Work Sans', sans-serif;
   font-weight: 500;
