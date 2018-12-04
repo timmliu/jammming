@@ -1,11 +1,12 @@
-.header {
-
-}
-
 .header-text {
-
+  padding: .77rem 0;
+  background-color: rgba(98, 0, 255, 0.62);
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.88rem;
+  color: #fff;
 }
 
 .header-text-highlight {
-
+  color: #ff69ba;
 }

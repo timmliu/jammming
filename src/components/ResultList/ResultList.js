@@ -19,11 +19,12 @@ class ResultList extends React.Component {
     return (
       <div className="result-list">
         <h2>Results</h2>
+        <div>{!results || !results.length ? "No results" : ""}</div>
         {
           results
             .filter(song => !listIds.includes(song.id))
             .map(song => {
-              return <Song handleClick={this.handleAdd} key={song.id} song={song} />
+              return <Song action="add" handleClick={this.handleAdd} key={song.id} song={song} />
             })
         }
       </div>
