@@ -41,7 +41,7 @@ class Playlist extends React.Component {
   render() {
     return (
       <div className="playlist">
-        <form onSubmit={this.handleSave}>
+        <form className="playlist-form" onSubmit={this.handleSave}>
           <h2>Playlist</h2>
           <input className="playlist-input" type="text" name="name" value={this.state.name} onChange={this.handleChange} />
           <br />

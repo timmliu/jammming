@@ -2,7 +2,7 @@ import { corsAnywhere, urlHash } from "./helpers"
 
 const CLIENT_ID = "8d7d16cf7cf748ae906826e4eea17ed7"
 const LIMIT = 20
-const REDIRECT_URL = "http://pbnjammming.surge.sh/" // "http://localhost:3000/"
+let REDIRECT_URL = "http://pbnjammming.surge.sh/"
 const SCOPES = [
   'user-read-birthdate',
   'user-read-email',
@@ -26,6 +26,7 @@ class Spotify {
   }
 
   authorize(term) {
+    if (window.location.href.match(/localhost/)) REDIRECT_URL = "http://localhost:3000/"
     window.location = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURI(REDIRECT_URL)}&scope=${SCOPES.join('%20')}&response_type=token&state=${term}`
   }
 
